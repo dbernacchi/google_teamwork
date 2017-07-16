@@ -1,0 +1,208 @@
+@import 'normalize.sass'
+@import 'general.sass'
+
+$main-title-colors: rgb(66,128,238) rgb(213,68,55) rgb(238,174,0) rgb(15,151,87)
+$i: 0
+=main-title-alternate-colors
+	@each $color in $main-title-colors
+		$i: $i + 1
+		span:nth-child(#{$i})
+			color: $color
+
+.main-title
+	+main-title-alternate-colors
+	white-space: nowrap
+	span
+		font-family: $secondary-font
+
+.second-title
+	line-height: 5vh
+	font-size: 3.5vh
+	white-space: nowrap
+	@media (orientation:landscape)
+		line-height: 5vw
+		font-size: 4vw
+
+.centered-title
+	line-height: 5vh
+	text-align: center
+	@media (orientation:landscape)
+		line-height: 5vh
+
+$min-content-width: 320px
+$min-content-height: 480px
+// $main-container-padding: calc((100% - #{$content-width})/2)
+
+$main-container-padding: 12vw
+
+.container
+	width: 100%//$content-width
+	min-width: $min-content-width
+	//margin: 0 auto
+	//padding-left: $main-container-padding
+	//padding-right: $main-container-padding
+	padding: 1vh $main-container-padding 0 $main-container-padding
+	height: 100%
+	min-height: 480px
+	position: relative
+
+.main-container
+	@extend .container
+	background-image: url("../../images/bottom-dots.png")
+	background-repeat: no-repeat
+	background-size: contain
+	background-position: center bottom
+	display: block
+	background-origin: content-box
+	
+
+@mixin line-hack($bottom)
+	margin-left: -$main-container-padding
+	margin-right: -$main-container-padding
+	padding-left: $main-container-padding
+	padding-right: $main-container-padding
+	@if $bottom
+		border-bottom: 1px solid rgb(204,204,204)
+	@else
+		border-top: 1px solid rgb(204,204,204)
+
+.main-menu
+	font-family: $thicker-font
+	font-size: 3.2vh
+	@media (orientation:landscape)
+		font-size: 3.6vw
+	li:last-child
+		@include line-hack(true)
+	li
+		line-height: 12vh
+		@include line-hack(false)
+		@media (orientation:landscape)
+			line-height: 13vw
+		
+
+.arrow
+	background-repeat: no-repeat
+	background-size: contain
+	background-position-x: 95%
+	background-position-y: center
+	background-size: 3.2vh 1.8vh
+
+.expand-arrow
+	@extend .arrow
+	background-image: url('../../images/expand-arrow.png') 
+
+.state-ready-to-expand
+	@extend .expand-arrow
+
+.state-ready-to-expand ~ #carousel
+	@extend .hidden
+
+
+.collapse-arrow
+	@extend .arrow
+	background-image: url('../../images/collapse-arrow.png') 
+
+.state-ready-to-collapse
+	@extend .collapse-arrow
+
+.state-ready-to-collapse ~ #carousel
+	@extend .visible
+
+#carousel .item img
+	display: block
+	width: 100%
+	height: auto
+
+
+.ready-btn
+	@extend .action-blue-btn
+	margin-bottom: 10vh
+	@media (orientation:landscape)
+		margin-bottom: 5vw
+	
+
+.action-blue-btn
+	background-color: rgb(32,149,243)
+	color: white
+	border-radius: 0.376vh
+	border: none
+	line-height: 8vh
+	width: 24.5vh
+	font-size: 3vh
+	@media (orientation:landscape)
+		border-radius: 0.376vw
+		line-height: 8vw
+		width: 24.5vw
+		font-size: 3vw
+
+footer
+	width: 100%
+	color: rgb(204,204,204)
+	font-size: 2.6vh
+	text-align: center
+	padding-bottom: 15vh
+	@media (orientation:landscape)
+		padding-bottom: 20vw
+		font-size: 3.6vw
+		padding-bottom: 16vw
+
+
+/***LOADER****/
+.loading-component
+	text-align: center
+	padding-bottom: 3.5vh
+	.loading-dots
+		width: 20vh
+	.loading-text
+		padding-bottom: 3.5vh
+	@media (orientation: landscape)
+		padding-bottom: 3.5vw
+		.loading-dots
+			width: 20vw
+		.loading-text
+			padding-bottom: 3.5vw
+
+.try-anyway
+	padding-bottom: 5vw
+	img
+		height: 6vh
+	.try-anyway-text
+		height: 6vh
+		font-size: 2.5vw
+		padding: 5vh 2vh 7vh 2vh
+
+
+.dots-shared
+	display: block
+	width: 100%
+	height: auto
+
+.shadowed-container
+	border: 1px solid #ddd
+	box-shadow: 0vh 0vh 1.5vh 0.5vh rgb(238, 238, 238)
+	padding: 10% 10% 0 10%
+	.hashTag
+		color: rgb(66,133,244)
+		text-decoration: none
+
+.social-media
+	@extend .centered-v2
+	@extend .relative
+	img
+		width: 7vh
+		margin-top: 1.5vh
+		margin-right: 2.5vh
+		@media (orientation: landscape)
+			width: 10vw
+			margin-top: 1.5vw
+			margin-right: 2.5vw
+	img:last-child
+		margin-right: 0
+
+.play-again-btn
+	@extend .action-blue-btn
+	margin-bottom: 4.5vh
+	margin-top: 4.5vh
+	@media (orientation: landscape)
+		margin-bottom: 4.5vw
+		margin-top: 4.5vw

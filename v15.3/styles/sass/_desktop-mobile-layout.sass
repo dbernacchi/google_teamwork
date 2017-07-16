@@ -1,0 +1,147 @@
+.desktop-mobile-layout
+
+	width: 80vw
+	img
+		height: 3vh
+		@media (orientation: landscape)
+			height: 3vw
+
+
+	$video-height-h: 35vh
+	$video-height-w: 35vw
+	$video-height-w-desktop: 20vw
+	.videoWrapper
+		position: relative
+		padding-bottom: $video-height-h
+		padding-top: 25px
+		height: 0
+		@media (orientation: landscape)
+			padding-bottom: $video-height-w
+		@media (orientation: landscape) and (min-width: 1280px) 
+			padding-bottom: $video-height-w-desktop
+	
+	.videoWrapper iframe
+		width: 100%
+		height: auto
+		min-height: $video-height-h
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		@media (orientation: landscape)
+			height: $video-height-w 
+			width: 80%
+			margin: 0 auto
+			display: block
+		@media (orientation: landscape) and (min-width: 1280px) 
+			height: $video-height-w-desktop
+			width: 50%
+	
+	.video-container
+		.video
+			width: 100%
+			height: auto
+		@media (orientation: landscape)
+			text-align: center
+			.video
+				height: auto
+				width:  40vw !important
+				margin: 0 auto
+				display: block
+
+	$try-anyway-font-size-w: 1.8vw
+	$try-anyway-font-size-w-desktop: 1vw
+	$try-anyway-font-size-h: 1.5vh
+	.try-anyway
+		padding-bottom: 5vh
+		padding-top: 2vh
+	.try-anyway-text
+		font-size: $try-anyway-font-size-h
+		margin: 0 2vh 2vh 2vh
+		font-weight: bold
+		img
+			padding-left: 1vh
+			height: $try-anyway-font-size-h + 1
+
+		@media (orientation: landscape)
+			font-size: $try-anyway-font-size-w
+			margin: 0 2vw 2vw 2vw
+			font-weight: bold
+			img
+				height: $try-anyway-font-size-w + 1
+
+		@media (orientation: landscape) and (min-width: 1280px) 
+			font-size: $try-anyway-font-size-w-desktop
+			img
+				height: $try-anyway-font-size-w-desktop + 1 
+
+	br
+		height: 7.5vh
+		@media (orientation: landscape)
+			height: 7.5vw
+
+	.main-title-img
+		height: 4vh !important
+		width: auto
+		margin-left: auto
+		margin-right: auto
+		display: block
+		margin-bottom: 0vw
+		margin-top: 1vw
+		&.mobile
+			margin-bottom: 3vh
+			margin-top: 5vw
+		@media (orientation: landscape)
+			height: 4.5vw!important
+
+		@media (orientation: landscape) and (min-width: 768px) 
+			height: 4vw !important
+		@media (orientation: landscape) and (min-width: 1280px) 
+			height: 3vw!important
+	// h1
+	// 	font-size: 4vh
+	// 	@media (orientation: landscape)
+	// 		font-size: 7.5vw
+
+	// 	@media (orientation: landscape) and (min-width: 768px) 
+	// 		font-size: 5vw
+	// 	@media (orientation: landscape) and (min-width: 1280px) 
+	// 		font-size: 3.5vw
+
+	h3
+		// font-size: 1.4vh
+		// line-height: 2.5vh
+		font-size: 2.4vh
+		line-height: 3.5vh
+		@media (orientation: landscape)
+			font-size: 3.4vw
+			line-height: 4.5vw
+		@media (orientation: landscape) and (min-width: 768px) 
+			font-size: 2.5vw
+			line-height: 4vw
+		@media (orientation: landscape) and (min-width: 1280px) 
+			font-size: 1.4vw
+			line-height: 2vw
+
+	footer
+		font-size: 1.8vh
+		@media (orientation: landscape)
+			font-size: 2vw
+		@media (orientation: landscape) and (min-width: 1280px) 
+			font-size: 1.1vw
+
+.adaptive-height
+	width:auto
+	@media (orientation: portrait)
+		height: 100%
+
+.desktop.main-container 
+	background-image: url("../../images/desktop-bottom-dots.png")
+	background-repeat: no-repeat
+	background-size: 20%
+	background-position: right bottom
+	display: block
+	background-origin: border-box
+	footer
+		padding-bottom: 2vh

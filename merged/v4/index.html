@@ -1,0 +1,206 @@
+<!doctype html>
+<html class = "full-height">
+<head>
+<script type="text/javascript" src = "scripts/vunits.js"></script>
+<script type="text/javascript">
+/*
+* Browser Compatibility Check
+*/
+var skipCheck = false;
+function checkIfQueryParameterExists(field) {
+var url = window.location.href;
+if (url.indexOf('?' + field + '=') != -1)
+return true;
+else if (url.indexOf('&' + field + '=') != -1)
+return true;
+return false
+}
+if (checkIfQueryParameterExists("skip")) {
+skipCheck = true;
+} else {
+checkForIncompatibleDevices();
+}
+function checkForIncompatibleDevices() {
+var is_mobile = false;
+var is_compatible = false;
+var agent = navigator.userAgent;
+
+
+//find Chrome Android v33 or greater
+if (agent.indexOf('Android') > -1) {
+var chrome = agent.indexOf('Chrome/');
+if (chrome > -1) {
+var version = agent.charAt(chrome + 7) + agent.charAt(chrome + 8);
+var versionInt = parseInt(version);
+if (versionInt >= 33) {
+is_compatible = true;
+}
+}
+}
+//find Mobile Safari v8 or greater
+if (agent.indexOf('AppleWebKit') > -1) {
+var safari = agent.indexOf('Version/');
+if (safari > -1) {
+var version = agent.charAt(safari + 8);
+var versionInt = parseInt(version);
+if (versionInt >= 8) {
+is_compatible = true;
+}
+}
+}
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+// tasks to do if it is a Mobile Device
+is_mobile = true;
+}
+
+//IOS Chrome
+if (agent.indexOf('CriOS') > -1) {
+is_compatible = true;
+}
+
+if (agent.indexOf('Kindle') > -1) {
+is_compatible = false;
+}
+if (agent.indexOf('iPad') > -1) {
+is_compatible = false;
+}
+
+//only Nexus5, Samsung Galaxy 4-5, iPhone 5s and 6
+
+
+
+if (is_mobile && !is_compatible) {
+location.href = "./incompatible_mobile.html";
+}
+if (!is_mobile && !is_compatible) {
+location.href = "./incompatible.html";
+}
+}
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>TeamWork 2015</title>
+<meta property="fb:app_id" content="787409934680006" />
+<meta property="og:title" content="TeamWork 2015" />
+<meta property="og:image" content="image/Cardboard_OG_Image_630x630.jpg" />
+<meta property="og:image" content="image/Cardboard_OG_Image1200x630.jpg" />
+<meta property="og:url" content="teamwork2015.com" />
+<meta property="og:description" content="Experience what great teamwork is made of, through Google Cardboard. Unlock your own virtual journey." />
+<meta name="description" content="Experience what great teamwork is made of, through Google Cardboard. Unlock your own virtual journey.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="assets/bootstrap.min.css">
+<!-- Latest compiled and minified
+JavaScript -->
+<link rel="stylesheet" href="styles/stylesheets/main.css">
+<link rel="stylesheet" href="assets/owl.carousel.css">
+<link rel="stylesheet" href="assets/owl.theme.css">
+<style>
+#glContainer {
+position: absolute;
+}
+#startButton {
+-webkit-appearance: none;
+-moz-appearance: none;
+display: none;
+}
+</style>
+<script src="js/howler.min.js"></script>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/third-party/threejs/three.min.js"></script>
+<script src="js/third-party/threejs/StereoEffect.js"></script>
+<script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
+<script src="js/third-party/threejs/OrbitControls.js"></script>
+<script src="js/third-party/threejs/loaders/SceneLoader.js"></script>
+<script src="js/delaunay.js"></script>
+<!--<script src="assets/jquery.min.js"></script>-->
+<script src="assets/bootstrap.min.js"></script>
+<script src="assets/owl.carousel.js"></script>
+<script src="scripts/main.js"></script>
+</head>
+<body>
+<script>
+if (!Detector.webgl) {
+Detector.addGetWebGLMessage();
+}
+</script>
+<canvas id="BadgeCanvas" width="640" height="480" class="hidden"></canvas>
+<img id="canvasImg" class="hidden">
+<div id="glContainer"></div>
+<div id="topbar"></div>
+<div id="main_container_id" class="main-container">
+<div id="main_container_top_id" class="hide">
+<img src="images/TeamWork2015.jpg" alt="" class = "main-title-img">
+<br>
+<p class = "second-title">Experience what great teamwork</p>
+<p class = "second-title">is made of, on Google Cardboard.</p>
+<br>
+<div class="main-menu">
+<div id = "assemble" class = "state-ready-to-expand main-menu-item">1. Is your device ready?</div>
+<div class="block carousel-details">
+<p>a.) Disable NFC</p>
+<p>b.) Disable screen timeout</p>
+<p>c.) Enable auto-rotate</p>
+<p>d.) Assemble Cardboard:</p>
+</div>
+<div id = "carousel" class = "owl-carousel owl-theme">
+<!-- <img src="images/assemble-cardbord.png" alt=""> -->
+<div class="item"><img src="images/step_0000_i1.png" alt="Step 1"></div>
+<div class="item"><img src="images/step_0001_i2.png" alt="Step 2"></div>
+<div class="item"><img src="images/step_0002_i3.png" alt="Step 3"></div>
+<div class="item"><img src="images/step_0003_i4.png" alt="Step 4"></div>
+<div class="item"><img src="images/step_0004_i5.png" alt="Step 5"></div>
+<div class="item"><img src="images/step_0005_i6.png" alt="Step 6"></div>
+<div class="item"><img src="images/step_0006_i7.png" alt="Step 7"></div>
+<div class="item"><img src="images/step_0007_i8.png" alt="Step 8"></div>
+<div class="item"><img src="images/step_0008_i9.png" alt="Step 9"></div>
+</div>
+<div class = "main-menu-item" >2. Hit Ready and insert phone</div>
+</div>
+<br>
+<br>
+</div>
+<div id="progress">
+<div id="progressBar" class="loading-component">
+<h2 class = "loading-text">Loading</h2>
+<img class = "loading-dots" src="images/loading-dots.gif" alt="">
+</div>
+</div>
+<input id="startButton" class="ready-btn centered" type="button" value="READY"/>
+<div id="main_container_bottom_id" class="hide">
+<footer>TeamWork 2015 <a href="disclaimer.html">Disclaimer</a> </footer>
+<img class = "mobile-dots-center" src="images/bottom-dots.png">
+</div>
+</div>
+<div class="hide main-container" id="share-screen">
+<br>
+<div class="shadowed-container">
+<img src = "images/dots-shared.png" alt="" class = "dots-shared">
+<!--h4 class = "centered-text">This is what my teamwork looks like, using my tracked head movements through Google Cardboard. </h4>
+<a href = "#" class = "hashTag centered-text">#TeamWork15</a>
+<img src="images/TeamWork2015.jpg" alt="" class = "main-title-img"-->
+</div>
+<div class="inline social-media">
+<a id="gshare" class="social-media-square" href="">
+<img src="images/G+.png" alt="">
+</a>
+<a id="tshare" class ="social-media-square" href="https://twitter.com/share">
+<img src="images/twitter.png" alt="">
+</a>
+<a id="fbshare" class = "social-media-square" href="">
+<img src="images/facebook.png" alt="">
+</a>
+</div>
+<input id="playagain" class="play-again-btn centered" type="button" value="PLAY AGAIN">
+<footer>TeamWork 2015 <a href="disclaimer.html">Disclaimer</a></footer>
+</div>
+<script src="js/Common.js"></script>
+<script src="js/Shaders.js"></script>
+<script src="js/AnimScene.js"></script>
+<script src="js/Animation.js"></script>
+<script src="js/Loaders.js"></script>
+<script src="js/ImageUpload.js"></script>
+<script src="js/Main.js"></script>
+<script src="js/teamwork-script.js"></script>
+</body>
+</html>

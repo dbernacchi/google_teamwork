@@ -1,0 +1,182 @@
+﻿<!doctype html>
+<html class = "full-height">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Test</title>
+        <link rel="stylesheet" href="assets/bootstrap.min.css">
+        <!-- Latest compiled and minified 
+        JavaScript -->
+        <link rel="stylesheet" href="styles/stylesheets/main.css">
+        <link rel="stylesheet" href="assets/owl.carousel.css">
+        <link rel="stylesheet" href="assets/owl.theme.css">
+        <style>
+            #glContainer {
+                position: absolute;
+            }
+            #startButton {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                display: none;
+            }
+        </style>
+
+        <script type="text/javascript">
+            <!-- //-->< ![CDATA[//><!--
+
+                    if (document.images)
+            {
+                img1 = new Image();
+                img1.src = "data/textures/loading.gif";
+                img2 = new Image();
+                img2.src = "data/textures/loading@2x.gif";
+            }
+
+            //--><!]]>
+        </script>
+
+        <script id="GradSphereVertex" type="x-shader/x-vertex">
+            varying vec2 texcoord;
+            void main()
+            {
+            texcoord = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+            }
+        </script>
+
+        <script id="GradSphereFragment" type="x-shader/x-fragment">
+            varying vec2 texcoord;
+            uniform float Time;
+            // x is length
+            // y is normalized y pos on texture
+            uniform vec4 GradParams;
+            uniform vec3 Color1;
+            uniform vec3 Color2;
+
+            void main()
+            {
+            float v1 = GradParams.y - GradParams.x;
+            float v2 = GradParams.y + GradParams.x;
+            float per = texcoord.y;
+
+            vec4 finalColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+
+            ///finalColor.rgb = Color1 * step( v1, per );
+            //finalColor.rgb = mix( finalColor.rgb, Color2 * step( v2, per ), per );
+            //finalColor.rgb = mix( finalColor.rgb, Color2, smoothstep( v1, v2, per ) );
+
+            if( per <= v1 )
+            finalColor.rgb = Color1;
+            else if( per >= v2 )
+            finalColor.rgb = Color2;
+            else
+            finalColor.rgb = mix( Color1, Color2, smoothstep( v1, v2, per ) );
+
+            gl_FragColor = finalColor;
+            }
+        </script>
+
+        <script id="DefaultTextureFragment" type="x-shader/x-fragment">
+            varying vec2 texcoord;
+            uniform sampler2D DiffuseMap;
+
+            void main()
+            {
+            gl_FragColor = texture2D( DiffuseMap, texcoord );
+            }
+        </script>
+
+        <script id="DefaultTextureUnPremultiplyFragment" type="x-shader/x-fragment">
+            varying vec2 texcoord;
+            uniform sampler2D DiffuseMap;
+
+            void main()
+            {
+            vec4 color = texture2D( DiffuseMap, texcoord );
+            gl_FragColor = vec4( color.rgb/color.a, color.a );
+            }
+        </script>
+
+        <script src="js/howler.min.js"></script>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/Detector.js"></script>
+        <script src="js/third-party/threejs/three.min.js"></script>
+        <script src="js/third-party/threejs/StereoEffect.js"></script>
+        <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
+        <script src="js/third-party/threejs/OrbitControls.js"></script>
+        <script src="js/third-party/threejs/loaders/SceneLoader.js"></script>
+        <script src="js/delaunay.js"></script>
+        <!--<script src="assets/jquery.min.js"></script>-->
+        <script src="assets/bootstrap.min.js"></script>
+        <script src="assets/owl.carousel.js"></script>
+        <script src="scripts/main.js"></script>
+    </head>
+    <body>
+
+        <script>
+            if (!Detector.webgl) {
+                Detector.addGetWebGLMessage();
+            }
+        </script>
+
+        <canvas id="BadgeCanvas" width="1280" height="720" class="hidden"></canvas>
+        <img id="canvasImg">
+        <div id="glContainer"></div>
+
+        <div id="topbar"></div>
+
+        <div id="main_container_id" class="main-container">
+            <img src="images/TeamWork2015.jpg" alt="" class = "main-title-img">
+
+            <br>
+
+            <p class = "second-title">Experience what great teamwork</p>
+            <p class = "second-title">is made of, on Google Cardboard.</p>
+            <br>
+
+            <div class = "main-menu">
+                <div id = "assemble" class = "state-ready-to-expand main-menu-item">1. Is your device ready?</div>
+                <div class="block carousel-details">
+                	<p>a.) Disable NFC</p>
+                    <p>b.) Disable screen timeout</p>
+                    <p>c.) Assemble Cardboard:</p>
+                </div>
+                <div id = "carousel" class = "owl-carousel owl-theme">
+                    <!-- <img src="images/assemble-cardbord.png" alt=""> -->
+                    <div class="item">
+                    	<img src="images/assemble-cardbord.png" alt="Step 1">
+                    </div>
+                    
+                    
+                    <div class="item"><img src="images/assemble-cardbord.png" alt="Step 2"></div>
+                    <div class="item"><img src="images/assemble-cardbord.png" alt="Step 3"></div>
+                    <div class="item"><img src="images/assemble-cardbord.png" alt="Step 3"></div>
+                </div>
+                <div class = "main-menu-item" >2. Hit Ready and insert phone</div>			
+            </div>
+            <br>
+            <br>
+
+            <div id="progress">
+                <div id="progressBar" class="loading-component">
+                    <h2  class = "loading-text">Loading</h2>
+                    <img class = "loading-dots" src="images/loading-dots.gif" alt="">
+                </div>
+            </div>
+
+            <input id="startButton" class="ready-btn centered" type="button" value="READY"/>
+            <!-- <footer></footer> -->
+            <!-- <footer><img src="images/bottom-dots.png" alt=""></footer> -->
+            <footer>TeamWork 2015 <a href="disclaimer.html">Disclaimer</a> </footer>
+        </div>
+
+        <script src="js/Common.js"></script>
+        <script src="js/AnimScene.js"></script>
+        <script src="js/Animation.js"></script>
+        <script src="js/Loaders.js"></script>
+        <script src="js/ImageUpload.js"></script>
+        <script src="js/Main.js"></script>
+        <script src="js/teamwork-script.js"></script>
+        <script src="js/retina.min.js"></script>
+    </body>
+</html>

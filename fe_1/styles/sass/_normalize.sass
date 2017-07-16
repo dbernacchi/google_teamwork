@@ -1,0 +1,71 @@
+@font-face
+	font-family: 'Roboto-Thin'
+	src: url("../fonts/Roboto-Thin.ttf") format('truetype')
+@font-face
+	font-family: 'Roboto-Light'
+	src: url("../fonts/Roboto-Light.ttf") format('truetype')
+@font-face
+	font-family: 'Roboto-Regular'
+	src: url("../fonts/Roboto-Regular.ttf") format('truetype')
+
+// @font-face
+// 	font-family: 'OpenSans-light'
+// 	src: url("../fonts/OpenSans-Light.ttf") format('truetype')
+// @font-face
+// 	font-family: 'OpenSans-regular'
+// 	src: url("../fonts/OpenSans-Regular.ttf") format('truetype')
+
+$main-font: 'Roboto-Thin'
+$secondary-font: 'Roboto-Light'
+$thicker-font: 'Roboto-Regular'
+
+html
+	width: 100%
+	// height: 100%
+	height: auto
+	box-sizing: border-box
+
+body
+	width: inherit
+	height: inherit
+
+body
+	font-family: $main-font
+	font-size: 16px
+	color: rgb(117,120,123)
+	display: inline-block
+
+ul
+	list-style: none
+	padding: 0
+
+
+h1
+	font-size: 7.5vh
+	@media (orientation:landscape)
+		font-size: 7.5vw
+
+h2
+	font-size: 5.5vh
+	@media (orientation:landscape)
+		font-size: 5.5vw
+
+h3
+	font-size: 3vh
+	@media (orientation:landscape)
+		font-size: 3vw
+
+sup 
+	font-size: 4.3vh
+	top: -2.5vh
+	@media (orientation:landscape)
+	font-size: 4.3vw
+	top: -2.5vw
+
+a
+	text-decoration: underline
+	color: inherit
+
+
+
+

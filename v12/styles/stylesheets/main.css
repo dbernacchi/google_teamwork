@@ -1,0 +1,382 @@
+@font-face {
+  font-family: "Roboto-Thin";
+  src: url("../fonts/Roboto-Thin.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("../fonts/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+html {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+body {
+  width: inherit;
+  height: inherit;
+}
+
+body {
+  font-family: "Roboto-Thin";
+  font-size: 16px;
+  color: #75787b;
+  display: inline-block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+h1 {
+  font-size: 7.5vh;
+}
+@media (orientation: landscape) {
+  h1 {
+    font-size: 7.5vw;
+  }
+}
+
+h2 {
+  font-size: 5.5vh;
+}
+@media (orientation: landscape) {
+  h2 {
+    font-size: 6.5vw;
+  }
+}
+
+h3 {
+  font-size: 3.5vh;
+  line-height: 5vh;
+}
+@media (orientation: landscape) {
+  h3 {
+    font-size: 4vw;
+    line-height: 5vw;
+  }
+}
+
+sup {
+  font-size: 4.3vh;
+  top: -2.5vh;
+}
+@media (orientation: landscape) {
+  sup {
+    font-size: 4.3vw;
+    top: -2.5vw;
+  }
+}
+
+a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.auto-height {
+  height: auto;
+}
+
+.centered {
+  margin: 0 auto;
+  display: block;
+}
+
+.centered-v2, .social-media {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.vertical-centered {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.all-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hidden, .state-ready-to-expand ~ #carousel {
+  display: none !important;
+}
+
+.visible, .state-ready-to-collapse ~ #carousel {
+  display: block !important;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.relative, .social-media {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+video {
+  width: 100% !important;
+  height: auto !important;
+}
+@media (orientation: landscape) {
+  video {
+    width: 50% !important;
+  }
+}
+
+.main-title {
+  white-space: nowrap;
+}
+.main-title span:nth-child(1) {
+  color: #4280ee;
+}
+.main-title span:nth-child(2) {
+  color: #d54437;
+}
+.main-title span:nth-child(3) {
+  color: #eeae00;
+}
+.main-title span:nth-child(4) {
+  color: #0f9757;
+}
+.main-title span {
+  font-family: "Roboto-Light";
+}
+
+.second-title {
+  line-height: 5vh;
+  font-size: 3.5vh;
+  white-space: nowrap;
+}
+@media (orientation: landscape) {
+  .second-title {
+    line-height: 5vw;
+    font-size: 4vw;
+  }
+}
+
+.centered-title {
+  line-height: 5vh;
+  text-align: center;
+}
+@media (orientation: landscape) {
+  .centered-title {
+    line-height: 5vh;
+  }
+}
+
+.container, .main-container {
+  width: 100%;
+  min-width: 320px;
+  padding: 1vh 12vw 0 12vw;
+  height: 100%;
+  min-height: 480px;
+  position: relative;
+}
+
+.main-container {
+  background-image: url("../../images/bottom-dots.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+  display: block;
+  background-origin: content-box;
+}
+
+.main-menu {
+  font-family: "Roboto-Regular";
+  font-size: 3.2vh;
+}
+@media (orientation: landscape) {
+  .main-menu {
+    font-size: 3.6vw;
+  }
+}
+.main-menu li:last-child {
+  margin-left: -12vw;
+  margin-right: -12vw;
+  padding-left: 12vw;
+  padding-right: 12vw;
+  border-bottom: 1px solid #cccccc;
+}
+.main-menu li {
+  line-height: 12vh;
+  margin-left: -12vw;
+  margin-right: -12vw;
+  padding-left: 12vw;
+  padding-right: 12vw;
+  border-top: 1px solid #cccccc;
+}
+@media (orientation: landscape) {
+  .main-menu li {
+    line-height: 13vw;
+  }
+}
+
+.arrow, .expand-arrow, .state-ready-to-expand, .collapse-arrow, .state-ready-to-collapse {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: 95%;
+  background-position-y: center;
+  background-size: 3.2vh 1.8vh;
+}
+
+.expand-arrow, .state-ready-to-expand {
+  background-image: url("../../images/expand-arrow.png");
+}
+
+.collapse-arrow, .state-ready-to-collapse {
+  background-image: url("../../images/collapse-arrow.png");
+}
+
+#carousel .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ready-btn {
+  margin-bottom: 10vh;
+}
+@media (orientation: landscape) {
+  .ready-btn {
+    margin-bottom: 5vw;
+  }
+}
+
+.action-blue-btn, .ready-btn, .play-again-btn {
+  background-color: #2095f3;
+  color: white;
+  border-radius: 0.376vh;
+  border: none;
+  line-height: 8vh;
+  width: 24.5vh;
+  font-size: 3vh;
+}
+@media (orientation: landscape) {
+  .action-blue-btn, .ready-btn, .play-again-btn {
+    border-radius: 0.376vw;
+    line-height: 8vw;
+    width: 24.5vw;
+    font-size: 3vw;
+  }
+}
+
+footer {
+  width: 100%;
+  color: #cccccc;
+  font-size: 2.6vh;
+  text-align: center;
+  padding-bottom: 15vh;
+}
+@media (orientation: landscape) {
+  footer {
+    padding-bottom: 20vw;
+    font-size: 3.6vw;
+    padding-bottom: 16vw;
+  }
+}
+
+/**LOADER*** */
+.loading-component {
+  text-align: center;
+  padding-bottom: 3.5vh;
+}
+.loading-component .loading-dots {
+  width: 20vh;
+}
+.loading-component .loading-text {
+  padding-bottom: 3.5vh;
+}
+@media (orientation: landscape) {
+  .loading-component {
+    padding-bottom: 3.5vw;
+  }
+  .loading-component .loading-dots {
+    width: 20vw;
+  }
+  .loading-component .loading-text {
+    padding-bottom: 3.5vw;
+  }
+}
+
+.try-anyway {
+  padding-bottom: 5vw;
+}
+.try-anyway img {
+  height: 6vh;
+}
+.try-anyway .try-anyway-text {
+  height: 6vh;
+  font-size: 2.5vw;
+  padding: 5vh 2vh 7vh 2vh;
+}
+
+.dots-shared {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shadowed-container {
+  border: 1px solid #ddd;
+  box-shadow: 0vh 0vh 1.5vh 0.5vh #eeeeee;
+  padding: 10% 10% 0 10%;
+}
+.shadowed-container .hashTag {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+.social-media img {
+  width: 7vh;
+  margin-top: 1.5vh;
+  margin-right: 2.5vh;
+}
+@media (orientation: landscape) {
+  .social-media img {
+    width: 10vw;
+    margin-top: 1.5vw;
+    margin-right: 2.5vw;
+  }
+}
+.social-media img:last-child {
+  margin-right: 0;
+}
+
+.play-again-btn {
+  margin-bottom: 4.5vh;
+  margin-top: 4.5vh;
+}
+@media (orientation: landscape) {
+  .play-again-btn {
+    margin-bottom: 4.5vw;
+    margin-top: 4.5vw;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

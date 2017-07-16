@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>TeamWork 2015</title>
+
+        <meta property="fb:app_id" content="787409934680006" />
+        <meta property="og:title" content="TeamWork 2015" />
+        <meta property="og:image" content="image/Cardboard_OG_Image_630x630.jpg" />
+        <meta property="og:image" content="image/Cardboard_OG_Image1200x630.jpg" />
+        <meta property="og:url" content="teamwork2015.com" />
+        <meta property="og:description" content="Experience what great teamwork is made of, through Google Cardboard. Unlock your own virtual journey." />
+
+        <meta name="description" content="Experience what great teamwork is made of, through Google Cardboard. Unlock your own virtual journey.">
+
+        <link rel="icon" type="image/png" href="favicon.png">
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:Light" />
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+
+            #glContainer {
+                position: absolute;
+                /*top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;*/
+            }
+
+            #gif {
+                /*display:none;*/
+            }
+
+            #progress {
+                display: -webkit-flex;
+                -webkit-align-items: center;
+                -webkit-justify-content: center;
+                height: 100vh;
+                -webkit-flex-direction: column;
+            }
+
+            #progressBar {
+                font-family: 'Open Sans';
+                font-size: 48px;
+                color: #75787B;
+                opacity: 0;
+                text-align: center;
+                background: transparent;
+            }
+
+            #progressBarText {
+                /*display:none;*/
+            }
+
+            #topbar {
+                left: 0;
+                top: 0;
+                position: absolute;
+            }
+
+            #startButtonElm {
+            }
+
+            #startButton {
+                color: #75787B;
+                opacity: 0;
+                font-family: 'Open Sans';
+                font-size: 48px;
+                text-align: center;
+                text-decoration: none;
+                border: none;
+                outline: 0;
+                cursor: pointer;
+                background: transparent;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                display: none;
+            }
+
+            .hidden {
+                display: none;
+            }
+        </style>
+
+        <script src="js/howler.min.js"></script>
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/Detector.js"></script>
+        <script src="js/third-party/threejs/three.min.js"></script>
+        <script src="js/third-party/threejs/StereoEffect.js"></script>
+        <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
+        <script src="js/third-party/threejs/OrbitControls.js"></script>
+        <script src="js/third-party/threejs/loaders/SceneLoader.js"></script>
+        <script src="js/delaunay.js"></script>
+
+    </head>
+
+    <body>
+
+        <script>
+if (!Detector.webgl) {
+    Detector.addGetWebGLMessage();
+}
+        </script>
+
+        <canvas id="BadgeCanvas" width="1280" height="720" class="hidden"></canvas>
+        <img id="canvasImg">
+        <div id="glContainer"></div>
+
+        <div id="topbar"></div>
+
+        <div id="progress">
+            <div id="progressBar">
+                <div id="gif"><img src="data/textures/loading.gif" id="preloadGif"></div>
+                <div id="progressBarText">0%</div>
+            </div>
+            <button id="startButton" class="hidden">START</button>
+        </div>
+        <!-- <div id="startButtonElm"> <button id="startButton">START</button> </div> -->
+
+        <script src="js/Common.js"></script>
+        <script src="js/Shaders.js"></script>
+        <script src="js/AnimScene.js"></script>
+        <script src="js/Animation.js"></script>
+        <script src="js/Loaders.js"></script>
+        <script src="js/ImageUpload.js"></script>
+        <script src="js/Main.js"></script>
+        <script src="js/teamwork-script.js"></script>
+    </body>
+</html>

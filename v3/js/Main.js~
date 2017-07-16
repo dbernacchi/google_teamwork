@@ -1,0 +1,328 @@
+//
+// Precision timer
+//
+var timeNow;
+var startTime;
+if( this.performance && performance.now )
+{
+    timeNow = function()
+    {
+        return performance.now() * 0.001;
+    };
+}
+else
+{
+    timeNow = function()
+    {
+        return Date.now() * 0.001;
+    };
+}
+
+
+function ConvertPosToLatLon( x, y, z, radius )
+{
+//    var lat = 90.0 - (Math.acos(y / radius)) * 180.0 / Math.PI;
+//    var lon = ((270.0 + (Math.atan2(x , z)) * 180.0 / Math.PI) % 360.0) - 180.0;
+    var lat = (Math.acos(y / radius)) * 180.0 / Math.PI;
+    var lon = ((270.0 + (Math.atan2(x , z)) * 180.0 / Math.PI) % 360.0);;
+    return new THREE.Vector2( lat, lon );
+}
+
+
+var camera, scene, renderer;
+var effect, controls;
+var element, container;
+var windowWidth, windowHeight;
+
+var fgCamera;
+var fgScene;
+
+var currentTime = 0.0;
+var lastClockTime = 0.0;
+var frameTime = 0.0;
+//var clock = new THREE.Clock();
+
+var headTrackGeometry;
+var headTrackMaterial;
+var headTrackMesh;
+
+var headTrackTriggerTime = 1.0;
+var headTrackCountTime = 0.0;
+var headTrackVertexIdx = 0;
+var previousHeadPos = new THREE.Vector3();
+var currentHeadPos = new THREE.Vector3();
+
+var HeadTrackPositionArray = [];
+
+function Init()
+{
+    renderer = new THREE.WebGLRenderer(); // { antialias: true, precision: "mediump", stencil: true, alpha: true } );
+    element = renderer.domElement;
+    container = document.getElementById( 'glContainer' );
+    container.appendChild( element );
+
+    effect = new THREE.StereoEffect( renderer );
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera( 90, 1, 0.1, 700 );
+    camera.position.set(0, 10, 0);
+    scene.add(camera);
+
+    controls = new THREE.OrbitControls(camera, element);
+    controls.rotateUp(Math.PI / 4);
+    controls.target.set(
+            camera.position.x + 0.1,
+        camera.position.y,
+        camera.position.z
+    );
+    controls.noZoom = true;
+    controls.noPan = true;
+
+    function setOrientationControls( e )
+    {
+        if( !e.alpha )
+        {
+            return;
+        }
+
+        controls = new THREE.DeviceOrientationControls( camera, true );
+        controls.connect();
+        controls.update();
+
+        element.addEventListener( 'click', fullscreen, false );
+
+        window.removeEventListener( 'deviceorientation', setOrientationControls, true );
+    }
+    window.addEventListener( 'deviceorientation', setOrientationControls, true );
+
+
+    var light0 = new THREE.HemisphereLight( 0x777777, 0x000000, 0.6 );
+    var light1 = new THREE.DirectionalLight( 0x777777, 0.6 );
+    light1.position.set( 1, 1, 1 );
+    scene.add( light0 );
+    scene.add( light1 );
+
+    var texture = THREE.ImageUtils.loadTexture(
+        "textures/pattern1blackdiffuse.jpg"
+    );
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat = new THREE.Vector2( 2, 2 );
+    texture.anisotropy = renderer.getMaxAnisotropy();
+
+    var material = new THREE.MeshPhongMaterial({
+        color: 0xffffff,
+        specular: 0xffffff,
+        shininess: 20,
+        shading: THREE.FlatShading,
+        map: texture
+    });
+    material.side = THREE.BackSide; // Invert
+
+    var geometry = new THREE.BoxGeometry( 500, 300, 500 );
+    var mesh = new THREE.Mesh( geometry, material );
+    //mesh.frustumCulled = false;
+    //mesh.rotation.x = -Math.PI / 2;
+    scene.add( mesh );
+
+    //
+    // Add path line geometry
+    var rand = Math.randFloat
+    headTrackGeometry = new THREE.Geometry();
+    for( var i=0; i<512; i++ )
+    {
+        var per = i / 100.0;
+        var phi = THREE.Math.randFloat( 0, 2 * Math.PI );
+        var theta = THREE.Math.randFloat( 0, Math.PI );
+        var r = 400.0;
+        var x = r * Math.cos( phi ) * Math.sin( theta );
+        var y = r * Math.sin( phi ) * Math.sin( theta );
+        var z = r * Math.cos( theta );
+//        console.log( phi + ", " + y + ", " + z );
+
+        var pos = new THREE.Vector2( 0, 0 );
+        //var pos = ConvertPosToLatLon( x, y, z, r );
+        //pos.x /= 180.0;  //
+        //pos.y /= 360.0;  // Normalize coordinates
+        //pos.x = 2 * pos.x - 1;
+        //pos.y = 2 * pos.y - 1;
+        headTrackGeometry.vertices.push( new THREE.Vector3( pos.x, pos.y, 1 ) );
+    }
+    headTrackGeometry.dynamic = true;
+    //headTrackMaterial = new THREE.LineBasicMaterial( { color: 0xff00ff } );
+    //headTrackMesh = new THREE.Line( headTrackGeometry, headTrackMaterial );
+    headTrackMaterial = new THREE.PointCloudMaterial( { color: 0xff0000, size: 0.025 } );
+    headTrackMaterial.depthTest = false;
+    headTrackMaterial.depthWrite = false;
+    headTrackMesh = new THREE.PointCloud( headTrackGeometry, headTrackMaterial );
+    //scene.add( headTrackMesh );
+
+
+    fgScene = new THREE.Scene();
+    fgCamera = new THREE.Camera();
+    fgScene.add( fgCamera );
+    fgScene.add( headTrackMesh );
+
+
+    window.addEventListener( 'resize', Resize, false );
+    setTimeout( Resize, 1 );
+
+    currentTime = 0.0;
+    startTime = timeNow();
+}
+
+function Update( dt )
+{
+    Resize();
+
+    camera.updateProjectionMatrix();
+    //camera.position.set( 0, 0, 0 );
+    //console.log( camera.position );
+
+    controls.update( dt );
+
+/**
+    headTrackCountTime += dt;
+
+    var headRadius = 400.0;
+    var headDir = new THREE.Vector3( 0, 0, 1 );
+    headDir.applyQuaternion( camera.quaternion );
+    headDir.multiplyScalar( headRadius );
+
+    var pos = ConvertPosToLatLon( headDir.x, headDir.y, headDir.z, headRadius );
+    pos.x /= 180.0;  //
+    pos.y /= 360.0;  // Normalize coordinates
+    //console.log( pos.x + ", " + pos.y );
+    pos.x = 2 * pos.x - 1;
+    pos.y = 2 * pos.y - 1;
+
+    previousHeadPos.copy( currentHeadPos );
+    currentHeadPos.x = pos.y * -1; // * 128;
+    currentHeadPos.y = pos.x; // * 72;
+    currentHeadPos.z = 1; //50.0;
+    var diff = new THREE.Vector3();
+    diff.subVectors( currentHeadPos, previousHeadPos );
+    var len = diff.lengthSq();
+
+    if( len >= 0.0005 )
+    {
+        console.log( len );
+        headTrackCountTime = 0.0;
+    }
+
+    if( headTrackCountTime >= headTrackTriggerTime )
+    {
+        headTrackCountTime = 0.0;
+
+        headTrackMesh.geometry.vertices[ headTrackVertexIdx ].x = currentHeadPos.x;
+        headTrackMesh.geometry.vertices[ headTrackVertexIdx ].y = currentHeadPos.y;
+        headTrackMesh.geometry.vertices[ headTrackVertexIdx ].z = currentHeadPos.z;
+        if( headTrackVertexIdx < 511 )
+            headTrackVertexIdx ++;
+        //console.log( currentHeadPos.x + ", " + currentHeadPos.y + ", " + currentHeadPos.z );
+        headTrackGeometry.verticesNeedUpdate = true;
+    }
+**/
+
+/***
+        headTrackCountTime += dt;
+        if( headTrackCountTime >= headTrackTriggerTime )
+        {
+            headTrackCountTime = 0.0;
+
+            var headRadius = 400.0;
+            var headDir = new THREE.Vector3( 0, 0, 1 );
+            headDir.applyQuaternion( camera.quaternion );
+            headDir.multiplyScalar( headRadius );
+
+            var pos = ConvertPosToLatLon( headDir.x, headDir.y, headDir.z, headRadius );
+            pos.x /= 180.0;  //
+            pos.y /= 360.0;  // Normalize coordinates
+            //console.log( pos.x + ", " + pos.y );
+            pos.x = 2 * pos.x - 1;
+            pos.y = 2 * pos.y - 1;
+
+            previousHeadPos.copy( currentHeadPos );
+            currentHeadPos.x = pos.y * 128;
+            currentHeadPos.y = pos.x * 72;
+            currentHeadPos.z = 50.0;
+            var diff = new THREE.Vector3();
+            diff.subVectors( currentHeadPos, previousHeadPos );
+            var len = diff.lengthSq();
+
+            if( len > 5.0 )
+            {
+                headTrackMesh.geometry.vertices[ headTrackVertexIdx ].x = currentHeadPos.x;
+                headTrackMesh.geometry.vertices[ headTrackVertexIdx ].y = currentHeadPos.y;
+                headTrackMesh.geometry.vertices[ headTrackVertexIdx ].z = currentHeadPos.z;
+                if( headTrackVertexIdx < 511 )
+                    headTrackVertexIdx ++;
+                //console.log( pos.x + ", " + pos.y );
+                headTrackGeometry.verticesNeedUpdate = true;
+            }
+        }
+    **/
+}
+
+function Render( dt )
+{
+//    renderer.autoClear = false;
+    effect.render( scene, camera );
+//    renderer.setViewport( 0, 0, windowWidth, windowHeight );
+//    renderer.render( fgScene, fgCamera );
+}
+
+function MainLoop( t )
+{
+    requestAnimationFrame( MainLoop );
+
+    // Use timestep
+    var clockTime = timeNow() - startTime;
+    var delta = Math.min( 1.0 / 60.0, clockTime - lastClockTime );
+    lastClockTime = currentTime;
+    frameTime = delta;
+
+    Update( 0.016 ); //clock.getDelta() );
+    Render( 0.016 ); //clock.getDelta() );
+}
+
+function Resize()
+{
+    var width = container.offsetWidth;
+    var height = container.offsetHeight;
+    windowWidth = width;
+    windowHeight = height;
+
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( width, height );
+    effect.setSize( width, height );
+
+    //console.log( width + " x " + height );
+}
+
+function RequestFullscreen()
+{
+    if (container.requestFullscreen)
+    {
+        container.requestFullscreen();
+    }
+    else if (container.msRequestFullscreen)
+    {
+        container.msRequestFullscreen();
+    }
+    else if (container.mozRequestFullScreen)
+    {
+        container.mozRequestFullScreen();
+    }
+    else if (container.webkitRequestFullscreen)
+    {
+        container.webkitRequestFullscreen();
+    }
+}
+
+
+Init();
+MainLoop();

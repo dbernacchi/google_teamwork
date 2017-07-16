@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\vic\Dropbox\Public\Petgorilla\TeamworkCB</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/TeamworkCB.dll">
+      <publishTime>02/11/2015 04:52:20</publishTime>
+    </File>
+    <File Include="index.html">
+      <publishTime>02/10/2015 03:27:59</publishTime>
+    </File>
+    <File Include="js/Animation.js">
+      <publishTime>02/06/2015 17:56:36</publishTime>
+    </File>
+    <File Include="js/AnimScene.js">
+      <publishTime>02/11/2015 05:16:31</publishTime>
+    </File>
+    <File Include="js/base64binary.js">
+      <publishTime>01/29/2015 16:11:23</publishTime>
+    </File>
+    <File Include="js/Common.js">
+      <publishTime>02/11/2015 04:01:34</publishTime>
+    </File>
+    <File Include="js/dat.gui.min.js">
+      <publishTime>07/21/2014 13:49:06</publishTime>
+    </File>
+    <File Include="js/Detector.js">
+      <publishTime>07/21/2014 13:49:06</publishTime>
+    </File>
+    <File Include="js/DetectScreenSize.js">
+      <publishTime>01/28/2015 21:40:35</publishTime>
+    </File>
+    <File Include="js/dummy.js">
+      <publishTime>02/11/2015 06:04:20</publishTime>
+    </File>
+    <File Include="js/jquery-2.1.1.min.js">
+      <publishTime>07/21/2014 13:49:06</publishTime>
+    </File>
+    <File Include="js/jquery-2.1.3.min.js">
+      <publishTime>02/09/2015 11:50:16</publishTime>
+    </File>
+    <File Include="js/Loaders.js">
+      <publishTime>02/11/2015 05:53:41</publishTime>
+    </File>
+    <File Include="js/Main.js">
+      <publishTime>02/11/2015 06:04:18</publishTime>
+    </File>
+    <File Include="js/Main.js~">
+      <publishTime>01/20/2015 12:08:32</publishTime>
+    </File>
+    <File Include="js/RequestBinaryData.js">
+      <publishTime>07/21/2014 13:49:06</publishTime>
+    </File>
+    <File Include="js/stats.min.js">
+      <publishTime>07/21/2014 13:49:06</publishTime>
+    </File>
+    <File Include="js/teamwork-script.js">
+      <publishTime>02/04/2015 01:00:57</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/DeviceOrientationControls.js">
+      <publishTime>02/05/2015 18:56:15</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/AssimpJSONLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/AWDLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/BabylonLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/BinaryLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/ColladaLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/ctm/ctm.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/ctm/CTMLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/ctm/CTMWorker.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/ctm/license/js-lzma.txt">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/ctm/license/js-openctm.txt">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/ctm/license/OpenCTM.txt">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/ctm/lzma.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/DDSLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/gltf/glTF-parser.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/gltf/glTFAnimation.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/gltf/glTFLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/gltf/glTFLoaderUtils.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/MTLLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/OBJLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/OBJMTLLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/PDBLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/PLYLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/PVRLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/RGBELoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/SceneLoader.js">
+      <publishTime>01/26/2015 12:48:45</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/STLLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/SVGLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/TGALoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/UTF8Loader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/VRMLLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/loaders/VTKLoader.js">
+      <publishTime>01/22/2015 01:01:02</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/OrbitControls.js">
+      <publishTime>12/17/2014 18:11:50</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/StereoEffect.js">
+      <publishTime>01/23/2015 14:32:32</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/three.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/third-party/threejs/three.min.js">
+      <publishTime>01/28/2015 22:00:19</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>02/11/2015 06:04:23</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

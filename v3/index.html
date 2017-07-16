@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Teamwork Cardboard Experiment</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"> -->
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #glContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    </style>
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/Detector.js"></script>
+
+    <script src="js/third-party/threejs/three.min.js"></script>
+    <script src="js/third-party/threejs/StereoEffect.js"></script>
+    <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
+      <script src="js/DetectScreenSize.js"></script>
+    <script src="js/third-party/threejs/OrbitControls.js"></script>
+    <script src="js/third-party/threejs/loaders/SceneLoader.js"></script>
+  </head>
+
+  <body>
+    <script>
+        if (!Detector.webgl)
+        {
+            Detector.addGetWebGLMessage();
+        }
+    </script>
+
+
+    <div id="glContainer"></div>
+    <div style="position: absolute; z-index: 1; left: 0; top: 0; width:100%; background-color: lightgrey; font-family: sans-serif; font-size: 16px; text-align: left;" id="progressBar">
+        <div id="progressBarText"></div>
+    </div>
+<!--      <div id="wrapper">
+          <div style="position: absolute; left: 10px; top: 10px; width:200px; height:100px; background-color: yellow;">
+              abcd
+          </div>
+          <div style="position: absolute; z-index: 1; left: 50px; top: 20px; width:100px; height:20px; background-color: green;">
+              1234
+          </div>
+      </div>-->
+
+    <script src="js/Common.js"></script>
+    <script src="js/AnimScene.js"></script>
+    <script src="js/Animation.js"></script>
+    <script src="js/Loaders.js"></script>
+    <script src="js/Main.js"></script>
+    <script src="js/teamwork-script.js"></script>
+</body>
+</html>
