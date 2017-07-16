@@ -1,0 +1,13 @@
+version: '2'
+services:
+
+  # The Web Server
+  web:
+    build:
+      context: ./
+      dockerfile: web.dev.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ../../:/var/www
+    ports:
+      - 8080:80
